@@ -9,9 +9,6 @@
 <p>
     <a th:href="@{/types-create}">Add new classify</a>
 </p>
-<!--<th:block th:if="${message}">-->
-<!--    <p th:text="${message}"></p>-->
-<!--</th:block>-->
 <table border="1px" align="center">
     <thead>
     <tr>
@@ -22,8 +19,8 @@
     <tbody>
     <tr th:each="types : ${notesTypes}">
         <td><a th:href="@{/NotesType-view/__${types.id}__}"><span  th:text="${types.getName()}"></span></a></td>
-        <td><a th:href="@{/NotesType-edit/__${types.id}__}">Edit</a></td>
-        <td><a th:href="@{/NotesType-delete/__${types.id}__}" onclick="return confirm('Are you sure to delete this category???')">Delete</a></td>
+        <td><a th:href="@{/types-edit/__${types.id}__}">Edit</a></td>
+        <td><a th:href="@{/types-delete/__${types.id}__}" onclick="return confirm('Are you sure to delete this category???')">Delete</a></td>
     </tr>
     </tbody>
 </table>

@@ -3,11 +3,6 @@
 <head>
     <meta charset="UTF-8">
     <title>iNotes</title>
-<!--    <style>-->
-<!--        td{-->
-<!--            padding: 10px;-->
-<!--        }-->
-<!--    </style>-->
 </head>
 <body style="text-align: center">
 <h1>Các ghi chú</h1>
@@ -17,6 +12,7 @@
         <option th:each=" t : ${types}" th:value="${t.id}" th:text="${t.name}" ></option>
     </select>
 </form>
+<br/>
 <form>
     <input name="findByTitle" type="text" placeholder="Title"/>
     <input type="submit" value="Search"/>
@@ -24,9 +20,6 @@
 <br/>
 <button><a th:href="@{/create-notes}">Create new note</a></button>
 <p></p>
-<!--<th:block th:if="${message}">-->
-<!--    <p th:text="${message}"></p>-->
-<!--</th:block>-->
 <form>
     <table border="1" align ="center">
         <tr>
