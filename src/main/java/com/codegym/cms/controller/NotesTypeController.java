@@ -21,22 +21,22 @@ public class NotesTypeController {
         ModelAndView modelAndView = new ModelAndView("NoteType/list");
         modelAndView.addObject("notesTypes", notesTypeService.findAll());
         return modelAndView;
-//    }
-//    @GetMapping("/notestype-create")
-//    public ModelAndView createNotesType(){
-//        ModelAndView modelAndView = new ModelAndView("/notestype/create");
-//        modelAndView.addObject("notestype", new NotesType());
-//        return modelAndView;
-//    }
-//    @PostMapping("/notestype")
-//    public ModelAndView createNotesType(@ModelAttribute("notesType") NotesType notesType){
-//    notesTypeService.save(notesType);
-//    ModelAndView modelAndView = new ModelAndView("/notestype/create");
-//    modelAndView.addObject("notesType", new NotesType());
-//    modelAndView.addObject("message", "New notes type was added");
-//    return modelAndView;
-//    }
-
-
     }
+    @GetMapping("/types-create")
+    public ModelAndView createNotesType(){
+        ModelAndView modelAndView = new ModelAndView("NoteType/create");
+        modelAndView.addObject("notesType", new NotesType());
+        return modelAndView;
+    }
+    @PostMapping("/types-create")
+    public ModelAndView createNotesType(@ModelAttribute("notesType") NotesType notesType){
+    notesTypeService.save(notesType);
+    ModelAndView modelAndView = new ModelAndView("NoteType/create");
+    modelAndView.addObject("notesType", new NotesType());
+    modelAndView.addObject("message", "New notes type was added");
+    return modelAndView;
+    }
+
+
+
 }

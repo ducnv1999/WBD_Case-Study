@@ -7,14 +7,21 @@ import javax.persistence.*;
 public class Notes {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-
     private int id;
     private String title;
     private String content;
 
-    public Notes(String title, String content) {
+    @ManyToOne
+    @JoinColumn(name = "type_id")
+    private NotesType notesType;
+
+    public Notes() {
+    }
+
+    public Notes(String title, String content, NotesType notesType) {
         this.title = title;
         this.content = content;
+        this.notesType = notesType;
     }
 
     public int getId() {
@@ -39,5 +46,13 @@ public class Notes {
 
     public void setContent(String content) {
         this.content = content;
+    }
+
+    public NotesType getNotesType() {
+        return notesType;
+    }
+
+    public void setNotesType(NotesType notesType) {
+        this.notesType = notesType;
     }
 }

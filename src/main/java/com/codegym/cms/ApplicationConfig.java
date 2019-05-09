@@ -2,7 +2,9 @@ package com.codegym.cms;
 
 
 import com.codegym.cms.service.NotesService;
+import com.codegym.cms.service.NotesTypeService;
 import com.codegym.cms.service.impl.NotesServiceImpl;
+import com.codegym.cms.service.impl.NotesTypeServiceImpl;
 import org.springframework.beans.BeansException;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.ApplicationContext;
@@ -11,6 +13,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
+import org.springframework.data.web.config.EnableSpringDataWebSupport;
 import org.springframework.jdbc.datasource.DriverManagerDataSource;
 import org.springframework.orm.jpa.JpaTransactionManager;
 import org.springframework.orm.jpa.JpaVendorAdapter;
@@ -36,6 +39,7 @@ import java.util.Properties;
 @EnableTransactionManagement
 @ComponentScan("com.codegym.cms")
 @EnableJpaRepositories("com.codegym.cms.repository")
+@EnableSpringDataWebSupport
 public class ApplicationConfig extends WebMvcConfigurerAdapter implements ApplicationContextAware {
 
     private ApplicationContext applicationContext;
@@ -47,6 +51,11 @@ public class ApplicationConfig extends WebMvcConfigurerAdapter implements Applic
     @Bean
     public NotesService notesService(){
         return new NotesServiceImpl();
+    }
+
+    @Bean
+    public NotesTypeService notesTypeService(){
+        return new NotesTypeServiceImpl();
     }
 
 
