@@ -6,9 +6,12 @@
 </head>
 <body  style="text-align: center;">
 <h3>Add new category</h3>
-<p>
+<form>
     <a th:href="@{/types}">Back to Categories list</a>
-</p>
+<p></p>
+    <a th:href="@{/create-notes}">Back to Create new note</a>
+</form>
+<p></p>
 <th:block th:if="${message}">
     <p th:text="${message}"></p>
 </th:block>

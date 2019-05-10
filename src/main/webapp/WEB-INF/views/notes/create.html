@@ -9,14 +9,22 @@
 <p>
     <a th:href="@{/notes}">Back to Notes list</a>
 </p>
+
+<th:block th:if="${message}">
+    <p th:text="${message}"></p>
+</th:block>
 <form th:action="@{/create-notes}" th:object="${notes}" method="post">
     <table align="center">
         <tr>
-            <th>Classify:</th>
-            <td> <label>Classify :</label><select th:field="*{notesType}">
+            <td> <label>Classify :</label>
+            <select th:field="*{notesType}">
                 <option th:each=" t : ${types}" th:value="${t.id}" th:text="${t.name}" ></option>
             </select></td>
+            <td>
+                <button><a th:href="@{/types-create}">Create new category</a></button>
+            </td>
         </tr>
+
         <tr>
             <td style="text-align: left">Title</td>
             <td><label>
@@ -35,13 +43,10 @@
         </tr>
     </table>
 </form>
-
 <form th:action="@{/notes}" method="get">
-    <input type="submit" value="cancel" style="position: absolute; left: 520px; top: 300px;">
+    <label><input type="submit" value="cancel">
+    </label>
 </form>
 
-<th:block th:if="${message}">
-    <p th:text="${message}"></p>
-</th:block>
 </body>
 </html>

@@ -16,5 +16,5 @@ public interface NotesService {
 
     Page<Notes> findAllByTitleContaining(String title, Pageable pageable);
 
-
+    Page<Notes> findAllByType(NotesType notesType, Pageable pageable);
 }

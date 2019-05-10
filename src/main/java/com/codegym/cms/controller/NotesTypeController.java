@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 @Controller
 public class NotesTypeController {
@@ -54,7 +55,12 @@ public class NotesTypeController {
         modelAndView.addObject("message", "Successful category updates ");
         return modelAndView;
     }
-
-
+    @GetMapping("/types-delete/{id}")
+    public ModelAndView showDeleteForm(@PathVariable Integer id, RedirectAttributes redirectAttributes){
+        notesTypeService.remove(id);
+        ModelAndView modelAndView = new ModelAndView("redirect:/types");
+        redirectAttributes.addFlashAttribute("message", "The category has been deleted");
+        return modelAndView;
+    }
 
 }

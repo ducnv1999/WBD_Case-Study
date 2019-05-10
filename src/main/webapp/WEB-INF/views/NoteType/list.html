@@ -7,8 +7,9 @@
 <body style="text-align: center;">
 <h2>Categories List</h2>
 <p>
-    <a th:href="@{/types-create}">Add new classify</a>
+    <a th:href="@{/types-create}">Add new category</a>
 </p>
+
 <table border="1px" align="center">
     <thead>
     <tr>
@@ -18,7 +19,7 @@
     </thead>
     <tbody>
     <tr th:each="types : ${notesTypes}">
-        <td><a th:href="@{/NotesType-view/__${types.id}__}"><span  th:text="${types.getName()}"></span></a></td>
+        <td th:text="${types.getName()}"></td>
         <td><a th:href="@{/types-edit/__${types.id}__}">Edit</a></td>
         <td><a th:href="@{/types-delete/__${types.id}__}" onclick="return confirm('Are you sure to delete this category???')">Delete</a></td>
     </tr>

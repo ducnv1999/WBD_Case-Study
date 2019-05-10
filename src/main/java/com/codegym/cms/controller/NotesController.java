@@ -30,9 +30,22 @@ public class NotesController {
 
 
     @GetMapping("/notes")
-    public ModelAndView listNotes(@PageableDefault(value = 6) Pageable pageable) {
+    public ModelAndView listNotes(@RequestParam("type") Optional <Integer> types_id,
+                                  @RequestParam("findByTitle") Optional <String> findByTitle,
+            @PageableDefault(value = 4) Pageable pageable) {
+        Page<Notes> notes;
         ModelAndView modelAndView = new ModelAndView("notes/list");
-        modelAndView.addObject("notes", notesService.findAll(pageable));
+        if (findByTitle.isPresent()){
+            notes = notesService.findAllByTitleContaining(findByTitle.get(), pageable);
+        } else {
+            if (types_id.isPresent()) {
+               NotesType notesType = notesTypeService.findById(types_id.get());
+               notes =  notesService.findAllByType(notesType,pageable);
+            } else {
+                notes = notesService.findAll(pageable);
+           }
+        }
+        modelAndView.addObject("notes", notes);
         return modelAndView;
     }
     @GetMapping("/create-notes")

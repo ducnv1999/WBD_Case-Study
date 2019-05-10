@@ -6,10 +6,11 @@
 </head>
 <body style="text-align: center">
 <h1>Các ghi chú</h1>
-<form>
-
-<label>Classify :</label><select name="type">
-        <option th:each=" t : ${types}" th:value="${t.id}" th:text="${t.name}" ></option>
+<form id="type">
+    <label>Category :</label>
+    <select name="type" onchange="document.getElementById('type').submit()">
+        <option>Category</option>
+        <option th:each=" t : ${types}" th:value="${t.id}" th:text="${t.name}"></option>
     </select>
 </form>
 <br/>
@@ -17,22 +18,25 @@
     <input name="findByTitle" type="text" placeholder="Title"/>
     <input type="submit" value="Search"/>
 </form>
-<br/>
+<p></p>
 <button><a th:href="@{/create-notes}">Create new note</a></button>
+<br/>
 <p></p>
 <form>
-    <table border="1" align ="center">
+    <table border="1" align="center">
         <tr>
             <td style="width: 30px">STT</td>
             <td style="width: 200px">Title</td>
             <td colspan="2">Options</td>
-            <td style="width: 75px"><a th:href="@{/types}">classify</a></td>
+            <td style="width: 75px"><a th:href="@{/types}">category</a></td>
         </tr>
         <tr th:each="n,i: ${notes}">
             <td th:text="${i.count}"></td>
-            <td style="text-align: left"><a th:href="@{/view-notes/__${n.id}__}"><span th:text="${n.getTitle()}"></span></a></td>
+            <td style="text-align: left"><a th:href="@{/view-notes/__${n.id}__}"><span th:text="${n.getTitle()}"></span></a>
+            </td>
             <td style="width: 60px"><a th:href="@{/edit-notes/__${n.id}__}">Edit</a></td>
-            <td style="width: 60px"><a th:href="@{/delete-notes/__${n.id}__}" onclick="return confirm('Are you sure to delete this note???')">Delete</a></td>
+            <td style="width: 60px"><a th:href="@{/delete-notes/__${n.id}__}"
+                                       onclick="return confirm('Are you sure to delete this note???')">Delete</a></td>
             <td th:text="${n.notesType.name}"></td>
         </tr>
     </table>
